@@ -58,12 +58,14 @@ class TokenBox:
         """
         Destroys a database corresponding to the arguments passed during TokenBox initialization
         """
-        print(f"Database named {self.db_name} will be destroyed in 5 seconds. Perform Keyboard Interrupt to abort.")
-        time.sleep(5)
+        print(f"Database named {self.db_name} will be destroyed in 5...", end="")
+        for i in range(4, -1, -1):
+            time.sleep(1)
+            print(f"{i}...", end="")
         if self.use_sqlite:
             db_location = self.connection_strings["sqlite_conn_uri"].split("sqlite:///")[1]
             os.remove(db_location)
-            print(f'{self.db_name} dropped successfully.')
+            print(f'\n{self.db_name} dropped successfully.')
             return
         pg_engine_default = create_engine(self.connection_strings["pg_conn_uri_default"])
         conn = pg_engine_default.connect()
