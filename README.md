@@ -65,7 +65,7 @@ tokenbox.destroy_database()
 
     [('login_token_pk', 1), ('access_token', '12341234123asdfasdf4'), ('expires_in', 300), ('refresh_token', 'asdfkk23784987123khjga'), ('token_type', 'login'), ('expiry', 12312312)]
     [('access_token_pk', 1), ('rest_token', '12341234123asdfasdf4'), ('rest_url', 'asdfkk23784987123khjga')]
-    This will destroy the database named tokenbox_test. Perform Keyboard Interrupt to abort.
+    Database named tokenbox_test will be destroyed in 5...4...3...2...1...0
     tokenbox_test dropped successfully.
 
 
