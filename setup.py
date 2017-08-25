@@ -20,7 +20,7 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='1.0.3.dev',
+    version='1.0.4.dev',
 
     description='RESTful API token management utility',
     long_description=open('README.rst').read(),
@@ -74,7 +74,7 @@ setup(
     # your project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires=['psycopg2==2.7.1', 'SQLAlchemy==1.1.11'],
+    install_requires=['psycopg2==2.7.1', 'SQLAlchemy==1.1.11', 'mylittlehelpers'],
 
     python_requires='>=3.6',
 )

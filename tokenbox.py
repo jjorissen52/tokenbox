@@ -1,8 +1,11 @@
 import time
+import sys
 from sqlalchemy import MetaData, Table
 from sqlalchemy import create_engine, desc
 from sqlalchemy.engine.reflection import Inspector
 from sqlalchemy.pool import NullPool
+
+from mylittlehelpers import time_bomb
 
 import os
 
@@ -58,10 +61,7 @@ class TokenBox:
         """
         Destroys a database corresponding to the arguments passed during TokenBox initialization
         """
-        print(f"Database named {self.db_name} will be destroyed in 5...", end="")
-        for i in range(4, -1, -1):
-            time.sleep(1)
-            print(f"{i}...", end="")
+        time_bomb(f"Database named {self.db_name} will be destroyed", 5, 3)
         if self.use_sqlite:
             db_location = self.connection_strings["sqlite_conn_uri"].split("sqlite:///")[1]
             os.remove(db_location)
