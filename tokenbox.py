@@ -58,8 +58,7 @@ class TokenBox:
         """
         Destroys a database corresponding to the arguments passed during TokenBox initialization
         """
-        input("This will destroy the database named %s in 5 seconds."
-              " Perform Keyboard Interrupt to abort." % self.db_name)
+        print(f"Database named {self.db_name} will be destroyed in 5 seconds. Perform Keyboard Interrupt to abort.")
         time.sleep(5)
         if self.use_sqlite:
             db_location = self.connection_strings["sqlite_conn_uri"].split("sqlite:///")[1]
