@@ -1,3 +1,4 @@
+import time
 from sqlalchemy import MetaData, Table
 from sqlalchemy import create_engine, desc
 from sqlalchemy.engine.reflection import Inspector
@@ -57,7 +58,9 @@ class TokenBox:
         """
         Destroys a database corresponding to the arguments passed during TokenBox initialization
         """
-        input("This will destroy the database named %s. Perform Keyboard Interrupt to abort." % self.db_name)
+        input("This will destroy the database named %s in 5 seconds."
+              " Perform Keyboard Interrupt to abort." % self.db_name)
+        time.sleep(5)
         if self.use_sqlite:
             db_location = self.connection_strings["sqlite_conn_uri"].split("sqlite:///")[1]
             os.remove(db_location)
