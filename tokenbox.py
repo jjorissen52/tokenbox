@@ -61,7 +61,7 @@ class TokenBox:
         """
         Destroys a database corresponding to the arguments passed during TokenBox initialization
         """
-        time_bomb(f"Database named {self.db_name} will be destroyed", 5, 3)
+        time_bomb(5, action=f"Database named {self.db_name} will be destroyed", package=(print, ("",)))
         if self.use_sqlite:
             db_location = self.connection_strings["sqlite_conn_uri"].split("sqlite:///")[1]
             os.remove(db_location)
