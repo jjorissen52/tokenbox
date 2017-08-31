@@ -12,7 +12,7 @@ import os
 
 class TokenBox:
 
-    def __init__(self, db_user, db_password, db_name, use_sqlite, metadata, **kwargs):
+    def __init__(self, db_user, db_password, db_name, metadata, db_host='localhost', use_sqlite="", **kwargs):
         """
         :param db_user (string): user of db login role (must be capable of creating a PG database)
         :param db_password (string): password of db login role
@@ -26,7 +26,7 @@ class TokenBox:
         pg_config_dict = {
             'user': db_user,
             'password': db_password,
-            'host': 'localhost',
+            'host': db_host,
             'port': 5432,
         }
         self.use_sqlite = use_sqlite

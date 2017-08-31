@@ -45,7 +45,7 @@ table_definitions = {
 
 use_sqlite = True
 
-tokenbox = TokenBox('db_user', 'db_pass', 'tokenbox_test', use_sqlite, metadata, **table_definitions)
+tokenbox = TokenBox('db_user', 'db_pass', 'tokenbox_test', metadata, use_sqlite=use_sqlite, host='localhost', **table_definitions)
 # Creates a database corresponding to the arguments passed during TokenBox initialization
 tokenbox.create_database()
 # Updates (or inserts) the row into the 'login_token' table (there can only be one row!)
