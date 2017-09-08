@@ -12,14 +12,15 @@ import os
 
 class TokenBox:
 
-    def __init__(self, db_user, db_password, db_name, metadata, db_host='localhost', use_sqlite="", **kwargs):
+    def __init__(self, db_user, db_password, db_name, metadata, db_host='localhost', use_sqlite="", **table_definitions):
         """
-        :param db_user (string): user of db login role (must be capable of creating a PG database)
-        :param db_password (string): password of db login role
-        :param db_name (string): name of database to be created/managed
-        :param use_sqlite (bool): whether or not to use sqlite
-        :param metadata (sqlalchemy.MetaData): metadata used in table definitions
-        :param kwargs (sqlalchemy.Table): names of Tables and corresponding definitions
+        :param db_user: (string) user of db login role (must be capable of creating a PG database)
+        :param db_password: (string) password of db login role
+        :param db_name: (string) name of database to be created/managed
+        :param use_sqlite: (bool) whether or not to use sqlite
+        :param metadata: (sqlalchemy.MetaData) metadata used in table definitions
+        :param db_host: (string) network location of database
+        :param table_definitions: (sqlalchemy.Table) names of Tables and corresponding definitions
         """
         pg_conn_format = "postgresql://{user}:{password}@{host}:{port}/{database}"
         sqlite_conn_format = "sqlite:///{database}.db"
@@ -39,7 +40,7 @@ class TokenBox:
         self.metadata = metadata
         self.table_definitions = {}
 
-        for key, table in kwargs.items():
+        for key, table in table_definitions.items():
             assert(isinstance(table, Table), "All keyword argmuments must be an sqlalchemy.Table "
                                              "object.")
             self.table_definitions[key] = table
@@ -77,7 +78,7 @@ class TokenBox:
     def get_token(self, table_name):
         """
         Gets the token from the specified table (there's only one in storage!)
-        :param table_name:
+        :param table_name: (string) name of the table that the token is being retrieved from
         :return:
         """
         if self.use_sqlite:
@@ -102,8 +103,8 @@ class TokenBox:
     def update_token(self, table_name, **kwargs):
         """
         Updates (or inserts) the row into the specified table (there can only be one in storage!)
-        :param table_name:
-        :param kwargs:
+        :param table_name: (string) name of the table that the updated token resides/will reside in
+        :param kwargs: (kwargs) keys are column names, values are inserted values.
         :return:
         """
         if self.use_sqlite:
